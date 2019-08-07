@@ -31,6 +31,7 @@ class XMLDataset(CustomDataset):
         return img_infos
 
     def get_ann_info(self, idx):
+
         img_id = self.img_infos[idx]['id']
         xml_path = osp.join(self.img_prefix, 'Annotations',
                             '{}.xml'.format(img_id))
@@ -40,10 +41,12 @@ class XMLDataset(CustomDataset):
         labels = []
         bboxes_ignore = []
         labels_ignore = []
+        self.cat2label = {k.lstrip().rstrip(): v for k, v in self.cat2label.items()}
         for obj in root.findall('object'):
             name = obj.find('name').text
             label = self.cat2label[name]
-            difficult = int(obj.find('difficult').text)
+            # difficult = int(obj.find('difficult').text)
+            difficult = False
             bnd_box = obj.find('bndbox')
             bbox = [
                 int(bnd_box.find('xmin').text),

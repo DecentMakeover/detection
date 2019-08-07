@@ -44,8 +44,8 @@ test_cfg = dict(
     max_per_img=200)
 # model training and testing settings
 # dataset settings
-dataset_type = 'VOCDataset'
-data_root = 'data/VOCdevkit/'
+dataset_type = 'IDD'
+data_root = '/media/bubbles/HDD/IDD_Detection/'
 img_norm_cfg = dict(mean=[123.675, 116.28, 103.53], std=[1, 1, 1], to_rgb=True)
 data = dict(
     imgs_per_gpu=4,
@@ -56,8 +56,8 @@ data = dict(
         dataset=dict(
             type=dataset_type,
             ann_file=[
-                data_root + 'VOC2007/ImageSets/Main/trainval.txt',
-                data_root + 'VOC2012/ImageSets/Main/trainval.txt'
+                data_root + 'val.txt',
+                data_root + 'val.txt'
             ],
             img_prefix=[data_root + 'VOC2007/', data_root + 'VOC2012/'],
             img_scale=(300, 300),
@@ -83,7 +83,7 @@ data = dict(
             resize_keep_ratio=False)),
     val=dict(
         type=dataset_type,
-        ann_file=data_root + 'VOC2007/ImageSets/Main/test.txt',
+        ann_file=data_root + 'test.txt',
         img_prefix=data_root + 'VOC2007/',
         img_scale=(300, 300),
         img_norm_cfg=img_norm_cfg,
@@ -95,7 +95,7 @@ data = dict(
         resize_keep_ratio=False),
     test=dict(
         type=dataset_type,
-        ann_file=data_root + 'VOC2007/ImageSets/Main/test.txt',
+        ann_file=data_root + 'test.txt',
         img_prefix=data_root + 'VOC2007/',
         img_scale=(300, 300),
         img_norm_cfg=img_norm_cfg,

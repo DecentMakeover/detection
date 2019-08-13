@@ -161,6 +161,7 @@ def anchor_target_single(flat_anchors,
 
 def anchor_inside_flags(flat_anchors, valid_flags, img_shape,
                         allowed_border=0):
+    # import pdb;pdb.set_trace()
     img_h, img_w = img_shape[:2]
     if allowed_border >= 0:
         inside_flags = valid_flags & \
